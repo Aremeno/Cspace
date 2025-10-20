@@ -140,13 +140,13 @@ ___
 Markdown本身不支持直接设置字体类型和大小，但可以通过HTML标签来实现：
 
 ```markdown
-<span style="font-size: 20px;">大号字体</span>
-<span style="color: red;">红色字体</span>
+<font size="5">大号字体</font>
+<font color="red">红色字体</font>
 ```
 
 上面的示例效果如下：
-<span style="font-size: 20px;">大号字体</span>
-<span style="color: red;">红色字体</span>
+<font color="red">红色字体</font>
+<font size="5">大号字体</font>
 
 ## 小结
 
@@ -156,4 +156,6 @@ Markdown是一种轻量级的标记语言，用于快速书写格式化文本。
 还会用于博客撰写。  
 上传GitHub等平台。  
 ***
-<span style="font-size: 24px; font-family: SimSun; font-weight: bold;">继续努力学习，加油！
+<font size="5" face="SimSun" color="black">继续努力学习，加油！
+
+</font>
