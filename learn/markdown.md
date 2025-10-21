@@ -58,7 +58,6 @@ __粗体文本__（双下划线）
 多行代码块：
 ```c
 #include <stdio.h>
-
 int main() {
     printf("Hello, World!");
     return 0;
@@ -157,7 +156,6 @@ Markdown是一种轻量级的标记语言，用于快速书写格式化文本。
 上传GitHub等平台。  
 ***
 <span style="font-size:30px"><span style="color:red">继续努力学习，加油！
-
 
 </span></span>
 ***
