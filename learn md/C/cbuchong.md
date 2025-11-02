@@ -408,7 +408,7 @@ fgets(buffer, sizeof(buffer), stdin);//fgets(Ò»¸ö×Ö·ûÊý×é£¨ÓÃÓÚ´æ´¢ÊäÈëµÄ×Ö·û´®£
 ```c
 char buffer[100];
 fgets(buffer, sizeof(buffer), stdin);
-buffer[strcspn(buffer, "\n")] = 0; // ÊÖ¶¯ÒÆ³ý»»ÐÐ·û(ÒâË¼¾ÍÊÇ°Ñ»»ÐÐ·ûÌæ»»Îª×Ö·û´®½áÊø·û\0)
+buffer[strcspn(buffer, "\n")] = '\0'; // ÊÖ¶¯ÒÆ³ý»»ÐÐ·û£¨ÒâË¼¾ÍÊÇ°Ñ»»ÐÐ·ûÌæ»»Îª×Ö·û´®½áÊø·û\0£©
 ```
 
 ## ÎÄ¼þ¶ÁÐ´
@@ -474,3 +474,214 @@ fclose(fp); // ¹Ø±ÕÎÄ¼þ
 »º³åÇøµÄ¸ÅÄî£º  
 »º³åÇøÊÇÄÚ´æÖÐµÄÒ»¿éÁÙÊ±´æ´¢ÇøÓò£¬ÓÃÓÚÌá¸ßÊäÈëÊä³ö²Ù×÷µÄÐ§ÂÊ¡£  
 µ±½øÐÐÎÄ¼þ¶ÁÐ´²Ù×÷Ê±£¬Êý¾ÝÍ¨³£²»»áÖ±½Ó´ÓÎÄ¼þÏµÍ³¶ÁÈ¡»òÐ´Èë£¬¶øÊÇÏÈ´æ´¢ÔÚ»º³åÇøÖÐ£¬È»ºóÔÙÅúÁ¿´¦Àí¡£
+
+## Ô¤´¦ÀíÆ÷
+
+ËùÓÐÔ¤´¦ÀíÖ¸Áî¶¼ÒÔ#¿ªÍ·£¬³£¼ûµÄÔ¤´¦ÀíÖ¸ÁîÓÐ£º
+
+- #define: ¶¨Òåºê
+- #include: °üº¬Í·ÎÄ¼þ
+- #ifdef: ÅÐ¶ÏºêÊÇ·ñ¶¨Òå(Èç¹ûÒÑ¶¨ÒåÔò±àÒëÏÂÃæµÄ´úÂë)
+- #ifndef: ÅÐ¶ÏºêÊÇ·ñÎ´¶¨Òå£¨Èç¹ûÎ´¶¨ÒåÔò±àÒëÏÂÃæµÄ´úÂë£©
+- #endif: ½áÊøÌõ¼þ±àÒë(Óë#ifdef»ò#ifndefÅäºÏÊ¹ÓÃ)
+- #if: Ìõ¼þ±àÒë(¸ù¾Ý±í´ïÊ½µÄÖµ¾ö¶¨ÊÇ·ñ±àÒëÏÂÃæµÄ´úÂë)
+- #else: Ìõ¼þ±àÒëµÄelse²¿·Ö
+- #elif: Ìõ¼þ±àÒëµÄelse if²¿·Ö
+- #undef: È¡Ïûºê¶¨Òå
+- #error: Éú³É±àÒë´íÎóÐÅÏ¢
+- #pragma: ±àÒëÆ÷Ö¸Áî(ÓÃÓÚÏò±àÒëÆ÷´«µÝÌØ¶¨µÄÖ¸Áî)
+
+**ºêµÄÃüÃû½¨ÒéÊ¹ÓÃ´óÐ´×ÖÄ¸ºÍÏÂ»®Ïß¡£**
+
+º¯ÊýÊ½ºê¶¨Òå£º
+
+```c
+#define SQUARE(x) ((x) * (x))
+```
+
+ÐèÒª×¢ÒâµÄÊÇÃ¿¸ö²ÎÊýºÍÕû¸ö±í´ïÊ½¶¼Òª¼ÓÀ¨ºÅ£¬ÒÔ±ÜÃâÔËËãÓÅÏÈ¼¶ÎÊÌâ¡£  
+²¢ÇÒÒª±ÜÃâÊ¹ÓÃ¶à´Î¼ÆËã²ÎÊýµÄºê¶¨Òå£¬ÒÔ·ÀÖ¹¸±×÷ÓÃ¡£  
+
+### Ô¤¶¨Òåºê
+
+ANSI C¶¨ÒåÁËºÜ¶àºê£¬ÓÐ£º
+
+- __FILE__: µ±Ç°Ô´ÎÄ¼þµÄÃû³Æ
+- __LINE__: µ±Ç°Ô´ÎÄ¼þµÄÐÐºÅ
+- __DATE__: µ±Ç°±àÒëÈÕÆÚ
+- __TIME__: µ±Ç°±àÒëÊ±¼ä
+- __STDC__: Èç¹û±àÒëÆ÷·ûºÏANSI C±ê×¼£¬Ôò¶¨ÒåÎª1
+
+### Ìõ¼þ±àÒë
+
+Ìõ¼þ±àÒë¿ÉÒÔÓÃÓÚ¿çÆ½Ì¨¿ª·¢£¬ÒÔ¼°µ÷ÊÔ´úÂë¡£  
+´ËÄÚÈÝÄ¿Ç°²»×÷¹ý¶àÁË½â¡£
+
+### Ô¤´¦ÀíÆ÷ÔËËã·û
+
+- ºêÑÓÐøÔËËã·û£¨\£©: ÓÃÓÚ½«ºê¶¨Òå·Ö³É¶àÐÐ£¬ÔöÇ¿¿É¶ÁÐÔ¡£
+- ×Ö·û´®³£Á¿»¯ÔËËã·û£¨#£©: ÓÃÓÚ½«ºê²ÎÊý×ª»»Îª×Ö·û´®¡£
+- ±ê¼ÇÕ³ÌùÔËËã·û£¨##£©: ÓÃÓÚ½«Á½¸öºê²ÎÊýÁ¬½ÓÔÚÒ»Æð£¬ÐÎ³ÉÒ»¸öÐÂµÄ±êÊ¶·û¡£
+
+## Í·ÎÄ¼þ
+
+Í·ÎÄ¼þ·ÖÀà£º
+
+- ±ê×¼¿âÍ·ÎÄ¼þ: ÓÉC±ê×¼¿âÌá¹©£¬°üº¬³£ÓÃµÄº¯ÊýºÍÀàÐÍ¶¨Òå£¬Èç<stdio.h>¡¢<stdlib.h>µÈ¡£
+- ×Ô¶¨ÒåÍ·ÎÄ¼þ: ÓÉÓÃ»§´´½¨£¬°üº¬×Ô¶¨ÒåµÄº¯ÊýºÍÀàÐÍ¶¨Òå
+
+½¨Òé°ÑËùÓÐµÄ³£Á¿¡¢ºê¶¨Òå¡¢½á¹¹Ìå¶¨Òå¡¢º¯ÊýÉùÃ÷¡¢ÏµÍ³È«¾Ö±äÁ¿µÈ·ÅÔÚÍ·ÎÄ¼þÖÐ¡£
+
+### Í·ÎÄ¼þ±£»¤
+
+Í·ÎÄ¼þ±£»¤ÊÇÎªÁË·ÀÖ¹Í·ÎÄ¼þ±»¶à´Î°üº¬µ¼ÖÂµÄÖØ¶¨Òå´íÎó¡£³£ÓÃµÄÍ·ÎÄ¼þ±£»¤·½·¨ÓÐ£º
+
+- Ê¹ÓÃºê¶¨Òå
+
+```c
+#ifndef MY_HEADER_H
+#define MY_HEADER_H
+
+// Í·ÎÄ¼þÄÚÈÝ
+
+#endif
+```
+
+- Ê¹ÓÃ#pragma once
+
+```c
+#pragma once
+
+// Í·ÎÄ¼þÄÚÈÝ
+```
+
+- #pragma once ÊÇÒ»ÖÖ·Ç±ê×¼µ«¹ã·ºÖ§³ÖµÄÍ·ÎÄ¼þ±£»¤·½Ê½£¬Ê¹ÓÃÆðÀ´¸ü¼ò½à¡£
+
+### ±ê×¼Í·ÎÄ¼þ
+
+³£¼ûµÄ±ê×¼Í·ÎÄ¼þÓÐ£º
+
+- <stdio.h>: ±ê×¼ÊäÈëÊä³ö¿â
+- <stdlib.h>: ±ê×¼¿â£¬°üº¬¶¯Ì¬ÄÚ´æ¹ÜÀí¡¢Ëæ»úÊýÉú³ÉµÈº¯Êý
+- <string.h>: ×Ö·û´®´¦Àí¿â
+- <math.h>: ÊýÑ§¿â£¬°üº¬³£ÓÃÊýÑ§º¯Êý
+- <time.h>: Ê±¼äÈÕÆÚ¿â
+- <ctype.h>: ×Ö·û´¦Àí¿â
+- <stddef.h>: ¶¨ÒåÁË³£ÓÃµÄÀàÐÍºÍºê£¬Èçsize_t¡¢ptrdiff_t¡¢offsetofµÈ
+- <limits.h>: ¶¨ÒåÁË¸÷ÖÖÊý¾ÝÀàÐÍµÄÏÞÖÆÖµ
+- <errno.h>: ¶¨ÒåÁË´íÎóÂëºÍÏà¹Øº¯Êý
+- <assert.h>: Ìá¹©¶ÏÑÔ¹¦ÄÜ£¬ÓÃÓÚµ÷ÊÔ³ÌÐò
+- <stdbool.h>: ¶¨ÒåÁË²¼¶ûÀàÐÍºÍtrue¡¢false³£Á¿
+- <fcntl.h>: ÎÄ¼þ¿ØÖÆÑ¡Ïî
+- <unistd.h>: Ìá¹©¶ÔPOSIX²Ù×÷ÏµÍ³APIµÄ·ÃÎÊ
+  
+## Ç¿ÖÆÀàÐÍ×ª»»
+
+Ç¿ÖÆÀàÐÍ×ª»»ÓÃÓÚ½«Ò»ÖÖÊý¾ÝÀàÐÍ×ª»»ÎªÁíÒ»ÖÖÊý¾ÝÀàÐÍ£¬Óï·¨¸ñÊ½ÈçÏÂ£º
+
+```c
+(type) expression
+```
+
+ÀýÈç£º
+
+```c
+int a = 10;
+float b = (float)a; // ½«intÀàÐÍ×ª»»ÎªfloatÀàÐÍ
+```
+
+Ç¿ÖÆÀàÐÍ×ª»»¿ÉÒÔÓÃÓÚ±ÜÃâÀàÐÍ²»Æ¥ÅäµÄ´íÎó£¬»òÕßÔÚÐèÒªÌØ¶¨ÀàÐÍÊ±½øÐÐ×ª»»¡£  
+ÐèÒª×¢ÒâµÄÊÇ£¬Ç¿ÖÆÀàÐÍ×ª»»¿ÉÄÜ»áµ¼ÖÂÊý¾Ý¶ªÊ§»ò¾«¶È½µµÍ£¬Òò´ËÔÚÊ¹ÓÃÊ±Ó¦½÷É÷¡£  
+ÀýÈç£¬½«¸¡µãÊý×ª»»ÎªÕûÊýÊ±£¬Ð¡Êý²¿·Ö»á±»½Ø¶Ï£º
+
+```c
+float c = 3.14;
+int d = (int)c; // ½«floatÀàÐÍ×ª»»ÎªintÀàÐÍ
+```
+
+## ´íÎó´¦Àí
+
+ÔÚ·¢Éú´íÎóÊ±£¬´ó¶àÊý·µ»ØÖµÎª1»òNULL£¬Í¬Ê±»áÉèÖÃÈ«¾Ö±äÁ¿errnoÒÔÖ¸Ê¾´íÎóÀàÐÍ¡£  
+Ò»°ã»áÔÚ³ÌÐò³õÊ¼»¯Ê±°ÑerrnoÉèÖÃÎª0£¨±íÊ¾Ã»ÓÐ´íÎó£©¡£
+
+¿ÉÒÔÊ¹ÓÃperrorº¯ÊýÊä³ö´íÎóÐÅÏ¢£¬»òÕßÊ¹ÓÃstrerrorº¯Êý»ñÈ¡´íÎóÃèÊö×Ö·û´®¡£
+
+```c
+#include <stdio.h>
+#include <string.h>
+#include <errno.h>
+
+int main() {
+    FILE *fp = fopen("nonexistent.txt", "r");
+    if (fp == NULL) {
+        perror("Error opening file");
+        printf("Error description: %s\n", strerror(errno));
+        return 1;
+    }
+    fclose(fp);
+    return 0;
+}
+```
+
+- perrorº¯Êý»áÏÔÊ¾´«¸øËüµÄ×Ö·û´®²ÎÊý£¬ºóÃæ¸ú×ÅÒ»¸öÃ°ºÅºÍÒ»¸ö¿Õ¸ñ£¬È»ºóÊÇ¸ù¾Ýµ±Ç°errnoÖµÊä³öµÄ´íÎóÃèÊöÐÅÏ¢¡£
+- strerrorº¯Êý¸ù¾Ý´«ÈëµÄerrnoÖµ·µ»Ø¶ÔÓ¦µÄ´íÎóÃèÊö×Ö·û´®¡£
+
+## µÝ¹é
+
+µÝ¹é¾ÍÊÇº¯Êýµ÷ÓÃ×ÔÉí¡£  
+µ«ÊÇµÝ¹éº¯ÊýÒªÓÐÒ»¸öÖÕÖ¹Ìõ¼þ£¬·ÀÖ¹ÎÞÏÞµÝ¹éµ¼ÖÂÕ»Òç³ö¡£
+
+```c
+#include <stdio.h>
+
+void recursiveFunction(int n) {
+    if (n == 0) {
+        printf("Reached the base case\n");
+        return;
+    }
+    printf("Recursing with n = %d\n", n);
+    recursiveFunction(n - 1);
+}
+
+int main() {
+    recursiveFunction(5);
+    return 0;
+}
+```
+
+## ÄÚ´æ¹ÜÀí
+
+¶¯Ì¬ÄÚ´æ·ÖÅäº¯Êý£º
+
+- malloc: ·ÖÅäÖ¸¶¨×Ö½ÚÊýµÄÄÚ´æ£¬·µ»ØÖ¸Ïò·ÖÅäÄÚ´æµÄÖ¸Õë
+- calloc: ·ÖÅäÖ¸¶¨ÊýÁ¿µÄÄÚ´æ¿é£¬²¢³õÊ¼»¯Îª0£¬·µ»ØÖ¸Ïò·ÖÅäÄÚ´æµÄÖ¸Õë
+- realloc: ÖØÐÂ·ÖÅäÄÚ´æ¿éµÄ´óÐ¡£¬·µ»ØÖ¸ÏòÐÂ·ÖÅäÄÚ´æµÄÖ¸Õë
+- free: ÊÍ·ÅÖ®Ç°·ÖÅäµÄÄÚ´æ¿é
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <errno.h>
+
+int main() {
+    int *arr = (int *)malloc(5 * sizeof(int));//¶¯Ì¬µØ·ÖÅä5¸ö´óÐ¡ÎªintµÄÄÚ´æ¿Õ¼ä
+    if (arr == NULL) {
+        perror("Error allocating memory");
+        return 1;//ÄÚ´æ·ÖÅäÊ§°Ü£¬·µ»Ø1±íÊ¾´íÎó
+    }
+    for (int i = 0; i < 5; i++) {
+        arr[i] = i * 2;
+    }
+    for (int i = 0; i < 5; i++) {
+        printf("%d\n", arr[i]);
+    }
+    free(arr);
+    return 0;
+}
+```
+
+¶¯Ì¬ÄÚ´æ·ÖÅäÐèÒª×¢ÒâÄÚ´æÐ¹Â©µÄÎÊÌâ£¬·ÖÅäµÄÄÚ´æÊ¹ÓÃÍê±Ïºó±ØÐë¼°Ê±ÊÍ·Å¡£
+
+## ¿É±ä²ÎÊý
+
+ÔÝÍ£Ñ§Ï°¡£
