@@ -1,0 +1,60 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct Node{
+    int data;
+    struct Node* next;
+}Node;
+
+typedef struct LinkedList{
+    Node* head;
+}LinkedList;
+
+LinkedList* initlist(){
+    LinkedList* list = (LinkedList*)malloc(sizeof(LinkedList));
+    list->head = NULL;
+    return list;
+}
+
+void insertlist(LinkedList* list,int data){
+    Node* newnode = (Node*)malloc(sizeof(Node));
+    newnode->data = data;
+    newnode->next = list->head;
+    list->head=newnode;
+}
+
+void printlist(LinkedList* list){
+    Node* current = list->head;
+    while(current != NULL){
+        printf("%d ->",current->data);
+        current = current->next;
+    }
+    printf("NULL\n");
+}
+
+void freelist(LinkedList* list){
+    Node* current = list->head;
+    Node* nextnode;
+    while(current != NULL){
+        nextnode = current->next;
+        free(current);
+        current=nextnode;
+    }
+}
+
+int main()
+{
+    LinkedList* list = initlist();
+    int n;
+    printf("请输入想要往链表里添加的数据数量：");
+    scanf("%d",&n);
+    printf("依次输入数据:\n");
+    for(int i=0;i<n;i++){
+        int m=0;
+        scanf("%d",&m);
+        insertlist(list,m);
+    }
+    printlist(list);
+    freelist(list);
+    return 0;
+}
