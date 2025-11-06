@@ -19,8 +19,8 @@ LinkedList* initlist(){
 void insertlist(LinkedList* list,int data){
     Node* newnode = (Node*)malloc(sizeof(Node));
     newnode->data = data;
-    newnode->next = list->head;
-    list->head=newnode;
+    newnode->next = list->head;//新节点指向原来的头节点：新节点成为新的头节点，原头节点变为第二个节点
+    list->head=newnode;//更新头节点指针
 }
 
 void printlist(LinkedList* list){
@@ -56,5 +56,6 @@ int main()
     }
     printlist(list);
     freelist(list);
+    free(list);
     return 0;
 }
