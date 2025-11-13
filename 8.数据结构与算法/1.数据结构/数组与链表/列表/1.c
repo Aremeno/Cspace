@@ -1,26 +1,17 @@
-# 列表
-
-列表是一种线性数据结构，它由一系列元素组成，这些元素按照顺序排列。 这些元素不拘泥于数据类型，并且每一个元素都有一个索引，可以有重复元素。 
-列表的实现可以基于数组或链表，但是数组的长度不可变，因此一般使用动态数组（C++中的`vector`）或者链表来实现。
-
-## 列表的实现
-
-### C语言版本
-
-```c
 #include <stdio.h>
-#include <stdlib.h>
 #include <assert.h>
+#include <stdlib.h>
 
-// 定义列表结构体
-typedef struct MyList{
-    int *arr;           // 动态数组存储元素
-    int capacity;      // 列表的容量
-    int currentsize;   // 列表当前的大小
-    double extendRatio;// 扩容比例
-}MyList;
+// 定义结构体
+typedef struct {
+    int *arr;
+    int capacity;
+    int currentsize;
+    int extendRatio;
+} MyList;
 
-// 定义函数，创建列表
+//定义函数，该函数获得初识列表
+
 MyList *Newlist(){
     MyList *nums = malloc(sizeof(MyList));//结构体首先要分配内存
     nums->capacity = 10;
@@ -125,20 +116,6 @@ void delete(MyList *nums,int index){
 int *toArray(MyList *nums){
     return nums->arr;
 }
-```
 
-## 列表的操作
-
-由于C语言没有内置的列表类型，上述的列表实现过程比较底层。接下来，用C++语言来展示列表的常见操作。
-
-### 列表的创建
-
-```cpp
-#include <vector>
-
-using namespace std;
-
-vector<int> myList; // 创建一个空的整数列表
-```
 
 
