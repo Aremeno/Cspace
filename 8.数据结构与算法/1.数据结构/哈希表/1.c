@@ -1,19 +1,3 @@
-# 哈希表
-
-## 什么是哈希表？
-
-哈希表（Hash Table）是一种通过键（key）直接访问值（value）的数据结构。它通过哈希函数将键映射到数组的特定位置，从而实现高效的数据存储和检索。
-
-**核心思想**：通过数学函数（哈希函数）将任意长度的输入（键）转换为固定长度的输出（哈希值），并使用该哈希值作为数组的索引。
-
-## 哈希表的核心组件
-
-1. **哈希函数（Hash Function）**：将键转换成数组索引的函数。一个好的哈希函数应均匀分布键，减少冲突。
-2. **冲突解决机制**：当两个键通过哈希函数映射到同一索引时，称为冲突。常见的解决方法有链地址法和开放地址法。
-
-## C语言实现
-
-```c
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -154,10 +138,48 @@ void destroy_hash_table(HashTable *table) {
     free(table->buckets);
     free(table);
 }
-```
 
-## C++STL中的哈希表
-
-
-
-
+// int main() {
+//     // 创建哈希表
+//     HashTable *table = create_hash_table(10);
+    
+//     // 插入测试数据
+//     printf("插入数据...\n");
+//     hash_table_insert(table, "apple", 10);
+//     hash_table_insert(table, "banana", 20);
+//     hash_table_insert(table, "orange", 30);
+//     hash_table_insert(table, "grape", 40);
+//     hash_table_insert(table, "apple", 15);  // 更新已存在的键
+    
+//     print_hash_table(table);
+    
+//     // 查找测试
+//     printf("\n查找测试...\n");
+//     int value;
+//     if (hash_table_search(table, "banana", &value)) {
+//         printf("找到 banana: %d\n", value);
+//     } else {
+//         printf("未找到 banana\n");
+//     }
+    
+//     if (hash_table_search(table, "watermelon", &value)) {
+//         printf("找到 watermelon: %d\n", value);
+//     } else {
+//         printf("未找到 watermelon\n");
+//     }
+    
+//     // 删除测试
+//     printf("\n删除测试...\n");
+//     if (hash_table_delete(table, "orange")) {
+//         printf("成功删除 orange\n");
+//     } else {
+//         printf("删除 orange 失败\n");
+//     }
+    
+//     print_hash_table(table);
+    
+//     // 清理
+//     destroy_hash_table(table);
+    
+//     return 0;
+// }
