@@ -1,14 +1,20 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// 定义节点结构体
+
 typedef struct Node{
     int data;
     struct Node* next;
 }Node;
 
+// 定义链表头指针结构体
+
 typedef struct LinkedList{
     Node* head;
 }LinkedList;
+
+// 初始化链表
 
 LinkedList* initlist(){
     LinkedList* list = (LinkedList*)malloc(sizeof(LinkedList));
@@ -16,12 +22,16 @@ LinkedList* initlist(){
     return list;
 }
 
+// 插入节点
+
 void insertlist(LinkedList* list,int data){
     Node* newnode = (Node*)malloc(sizeof(Node));
     newnode->data = data;
     newnode->next = list->head;//新节点指向原来的头节点：新节点成为新的头节点，原头节点变为第二个节点
     list->head=newnode;//更新头节点指针
 }
+
+// 打印链表
 
 void printlist(LinkedList* list){
     Node* current = list->head;
@@ -32,6 +42,8 @@ void printlist(LinkedList* list){
     printf("NULL\n");
 }
 
+// 删除链表
+
 void freelist(LinkedList* list){
     Node* current = list->head;
     Node* nextnode;
@@ -41,6 +53,8 @@ void freelist(LinkedList* list){
         current=nextnode;
     }
 }
+
+// 测试代码
 
 int main()
 {
